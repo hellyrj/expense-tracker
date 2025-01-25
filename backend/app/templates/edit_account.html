@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Account</title>
+</head>
+<body>
+    <h1>Edit Account</h1>
+    <form action="{{ url_for('account.edit_account', account_id=account.id) }}" method="POST">
+        <label for="account_type">Account Type:</label>
+        <input type="text" id="account_type" name="account_type" value="{{ account.account_type }}" required>
+        <br>
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance" name="balance" step="0.01" value="{{ account.balance }}">
+        <br>
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{{ url_for('account.list_accounts') }}">Back to Accounts</a>
+</body>
+</html>

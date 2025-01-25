@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <ul>
+        <li><a href="{{ url_for('auth.profile') }}">Authentication</a></li>
+          <li><a href="{{ url_for('record.get_record_summary', date_range='current-month') }}">View Summary</a></li>
+          <li><a href="{{ url_for('record.add_record') }}">Add Record</a></li>
+        <li><a href="{{ url_for('record.get_records', date_range='current-month') }}">View Record</a></li>
+        <li><a href="{{ url_for('account.list_accounts') }}">Go to Accounts</a></li>
+        <li><a href="{{ url_for('categories.get_categories') }}">View Categories</a></li>
+        <li><a href="{{url_for('budgets.get_budgets') }}">Add Budgets</a></li>
+        <li><a href="{{ url_for('auth.settings') }}">settings</a></li>
+        <li><a href="{{ url_for('record.get_overview') }}">Overview</a></li>
+
+    </ul>
+</body>
+</html>

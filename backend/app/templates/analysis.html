@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <!-- Include a charting library, e.g., Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <h1>Analysis for {{ date_range }} </h1>
+
+    <div>
+        <h2>Income</h2>
+        <ul>
+            {% for category, amount in income_data.items() %}
+                <li>{{ category }}: ${{ amount }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h2>Expense</h2>
+        <ul>
+            {% for category, amount in expense_data.items() %}
+                <li>{{ category }}: ${{ amount }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Optional: Display a chart -->
+    <canvas id="analysisChart" width="400" height="200"></canvas>
+    <script>
+        const incomeData = JSON.{{ income_data | tojson }};
+        const expenseData = {{ expense_data | tojson }};
+
+        const chartData = {
+            labels: Object.keys(incomeData),
+            datasets: [
+                {
+                    label: 'Income',
+                    data: Object.values(incomeData),
+                    borderColor: 'green',
+                    fill: false
+                },
+                {
+                    label: 'Expense',
+                    data: Object.values(expenseData),
+                    borderColor: 'red',
+                    fill: false
+                }
+            ]
+        };
+
+        const ctx = document.getElementById('analysisChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: chartData
+        });
+    </script>
+
+</body>
+</html>

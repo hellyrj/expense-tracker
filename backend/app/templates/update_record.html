@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Record</title>
+</head>
+<body>
+    <h1>Update Record for {{ record.date_range }}</h1>
+    <form method="POST">
+        <div>
+            <label for="total_income">Total Income:</label>
+            <input type="number" id="total_income" name="total_income" value="{{ record.total_income }}" step="0.01" required>
+        </div>
+        <div>
+            <label for="total_expense">Total Expense:</label>
+            <input type="number" id="total_expense" name="total_expense" value="{{ record.total_expense }}" step="0.01" required>
+        </div>
+        <div>
+            <button type="submit">Update Record</button>
+        </div>
+    </form>
+    <a href="{{ url_for('record.get_records') }}">Back to Record List</a>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Overview Graphs</h1>
+    <canvas id="dailyChart"></canvas>
+    <canvas id="weeklyChart"></canvas>
+    <canvas id="monthlyChart"></canvas>
+
+    <script>
+        // Function to render a chart
+        function renderChart(id, labels, data, label) {
+            const ctx = document.getElementById(id).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    }]
+                }
+            });
+        }
+
+        // Daily data provided by backend as JSON
+        const dailyKeys = JSON.parse('{{ daily_keys | tojson }}');
+        const dailyValues = JSON.parse('{{ daily_values | tojson }}');
+        renderChart('dailyChart', dailyKeys, dailyValues, 'Daily Income');
+
+        // Weekly data provided by backend as JSON
+        const weeklyKeys = JSON.parse('{{ weekly_keys | tojson }}');
+        const weeklyValues = JSON.parse('{{ weekly_values | tojson }}');
+        renderChart('weeklyChart', weeklyKeys, weeklyValues, 'Weekly Income');
+
+        // Monthly data provided by backend as JSON
+        const monthlyKeys = JSON.parse('{{ monthly_keys | tojson }}');
+        const monthlyValues = JSON.parse('{{ monthly_values | tojson }}');
+        renderChart('monthlyChart', monthlyKeys, monthlyValues, 'Monthly Income');
+    </script>
+</body>
+</html>

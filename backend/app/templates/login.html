@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<h1>Login</h1>
+<!-- Add an id to the form so it can be targeted -->
+<form method="POST" action="{{ url_for('auth.login') }}" id="loginForm">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required value="">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required value="">
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<script>
+    // Reset the form when the page loads
+    window.onload = function () {
+        document.getElementById('loginForm').reset();
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+</head>
+<body>
+    <h1>Your Accounts</h1>
+
+    {% if accounts %}
+        <ul>
+            {% for account in accounts %}
+                <li>
+                    <strong>Type:</strong> {{ account.account_type }}<br>
+                    <strong>Balance:</strong> {{ account.balance }}
+                    <br>
+                    <a href="{{ url_for('account.edit_account', account_id=account.id) }}">Edit</a>
+                    <form action="{{ url_for('account.delete_account', account_id=account.id) }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this account?');">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No accounts available.</p>
+    {% endif %}
+
+    <h2>Add a New Account</h2>
+    <form action="{{ url_for('account.add_account') }}" method="POST">
+        <label for="account_type">Account Type:</label>
+        <input type="text" id="account_type" name="account_type" required>
+        <br>
+        <label for="balance">Initial Balance:</label>
+        <input type="number" id="balance" name="balance" step="0.01">
+        <br>
+        <button type="submit">Add Account</button>
+    </form>
+
+</body>
+</html>
